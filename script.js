@@ -81,6 +81,13 @@ function generatePassword()
         pwArray = pwArray.concat(specCharArray);
     }
 
-    
+    var finalPwArray = [];
 
+    for (var i = 1; i <= pwLength; i++)
+    {
+        finalPwArray = finalPwArray.concat(pwArray[Math.floor(Math.random() * (pwArray.length-1))]);
+    }
+    
+    var finalPwStr = finalPwArray.join('');
+    return finalPwStr;
 };
