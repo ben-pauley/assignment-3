@@ -16,16 +16,8 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword()
 {
-    askForNumOfChar();
-    whatCharacters();
-
-
-};
-
-function askForNumOfChar()
-{ // Asks the user how many characters they would like and ensures the input is between 8 and 128
     do
-    {
+    { // Asks the user how many characters they would like and ensures the input is between 8 and 128
         var correctInput = false;
         var pwLength = prompt("How many characters would you like in your password?");
         pwLength = parseInt(pwLength);
@@ -39,12 +31,10 @@ function askForNumOfChar()
         }
     } 
     while (correctInput == false);
-};
 
-function whatCharacters()
-{ // Asks the user what kinds of characters they would like and ensures at least one type is selected
+
     do
-    {
+    { // Asks the user what kinds of characters they would like and ensures at least one type is selected
         var oneSelected = false;
 
         var lowerCase = confirm("Would you like lower case characters in your password?");
@@ -62,4 +52,35 @@ function whatCharacters()
         }
     }
     while (oneSelected == false);
+
+
+    var lowerCaseArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    var UpperCaseArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    var numberArray = '0123456789'.split('');
+    var specCharArray = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~'.split('');
+
+    var pwArray = [];
+
+    if (lowerCase == true)
+    {
+        pwArray = pwArray.concat(lowerCaseArray);
+    }
+
+    if (upperCase == true)
+    {
+        pwArray = pwArray.concat(UpperCaseArray);
+    }
+
+    if (numbers == true)
+    {
+        pwArray = pwArray.concat(numberArray);
+    }
+
+    if (specChar == true)
+    {
+        pwArray = pwArray.concat(specCharArray);
+    }
+
+    
+
 };
