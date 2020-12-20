@@ -13,114 +13,115 @@ function writePassword()
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function generatePassword()
+function isNumberAndValidLength(length) 
 {
-    do
-    { // Asks the user how many characters they would like and ensures the input is between 8 and 128
-        var correctInput = false; // default to false
-        var pwLength = prompt("How many characters would you like in your password?");
-        pwLength = parseInt(pwLength); // ensure the input is an integer
-        if ((isNaN(pwLength)) || (pwLength < 8) || (pwLength > 128))
-        { // if the user has not entered a number between 8 and 128
-            alert("Please enter a number between 8 and 128.")
-        }
-        else if ((!isNaN(pwLength)) && (pwLength >= 8) && (pwLength <= 128))
-        { // if the user has entered a number between 8 and 128, correctInput is set to true and the do while loop ends
-            correctInput = true;
-        }
-    }
-    while (correctInput === false);
-
-
-    do
-    { // Asks the user what kinds of characters they would like and ensures at least one type is selected
-        var oneSelected = false; //default to false
-
-        var lowerCase = confirm("Would you like lower case characters in your password?");
-        var upperCase = confirm("Would you like upper case characters in your password?");
-        var numbers = confirm("Would you like numbers in your password?");
-        var specChar = confirm("Would you like special characters in your password?");
-
-        if (lowerCase || upperCase || numbers || specChar)
-        { // if the user has selected at least one character option, oneSelected is set to true and the do while loop ends
-            oneSelected = true;
-        }
-        else
-        { // if the user has not selected at least one chacter option, it loops back round
-            alert("You must select at least one type of character for your password.")
-        }
-    }
-    while (oneSelected === false);
-
-
-    var pwArray = []; // declare empty array to store all the possible characters the user selects
-
-    for (i = 97; i <= 122; i++)
-    {
-        if (lowerCase === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    for (i = 65; i <= 90; i++)
-    {
-        if (upperCase === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    for (i = 48; i <= 57; i++)
-    {
-        if (numbers === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    for (i = 33; i <= 47; i++)
-    {
-        if (specChar === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    for (i = 58; i <= 64; i++)
-    {
-        if (specChar === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    for (i = 91; i <= 96; i++)
-    {
-        if (specChar === true)
-        {
-            pwArray = pwArray.concat(String.fromCharCode(i));
-        }
-    }
-
-    var finalPwArray = []; // declare empty array to store the final password
-
-    for (var i = 1; i <= pwLength; i++)
-    { // for loop iterates equal to the number characters the user wants in their password, so if they wanted 10 characters, it would iterate 10 times
-        finalPwArray = finalPwArray.concat(pwArray[Math.floor(Math.random() * (pwArray.length-1))]); //each time this loops, one random character is added to the array containing the final password
-    }
-
-    var finalPwStr = finalPwArray.join(''); // removes commas and spaces from array so that it appears as one continuous string
-    return finalPwStr; //returns the final randomly generated password according to user's criteria
+    return !isNaN(length) && length > 7 && length < 129;
 };
 
-function addCharToArray(min, max, type)
+function getPasswordLength() 
 {
-    for (i = min; i <= max; i++)
+    var validLength = false;
+    do 
     {
-        if (type === true)
+        var pwLength = prompt("How many characters would you like in your password?");
+  
+        pwLength = parseInt(pwLength);
+  
+        if (isNumberAndValidLength(pwLength)) 
         {
-            pwArray = pwArray.concat(String.fromCharCode(i));
+            validLength = true;
+            continue;
         }
+        alert("Please enter a number between 8 and 128.");
+
+    } while (validLength === false);
+  
+    return pwLength;
+};
+
+function getCharacterTypes() 
+{
+    do 
+    {
+        var minimumSelected = false;
+  
+        var lower = confirm("Would you like lower case characters in your password?");
+        var upper = confirm("Would you like upper case characters in your password?");
+        var numbers = confirm("Would you like numbers in your password?");
+        var special = confirm("Would you like special characters in your password?");
+  
+        if (lower || upper || numbers || special) 
+        {
+            minimumSelected = true;
+            continue;
+        }
+  
+        alert("You must select at least one type of character for your password.");
+    
+    } while (minimumSelected === false);
+
+    return {lower, upper, numbers, special};
+};
+
+function getCharacterCodes(from, to) 
+{
+    let nums = [];
+    for (let i = from; i <= to; i++) 
+    {
+        nums.push(i);
     }
+    return nums;
+};
+
+function createPassword(length, characters)
+{
+    let password = "";
+  
+    for (var i = 1; i <= length; i++) 
+    {
+        password += characters[Math.floor(Math.random() * (characters.length - 1))];
+    }
+  
+    return password;
+};
+
+function generatePassword() 
+{
+    const passwordLength = getPasswordLength();
+    const {lower, upper, numbers, special} = getCharacterTypes();
+  
+    let characterCodes = [];
+
+    characterCodes = [
+        ...characterCodes,
+        lower ? getCharacterCodes(97, 122) : null
+    ];
+    characterCodes = [
+        ...characterCodes,
+        upper ? getCharacterCodes(65, 90) : null
+    ];
+    characterCodes = [
+        ...characterCodes,
+        numbers ? getCharacterCodes(48, 57) : null
+    ];
+    characterCodes = [
+        ...characterCodes,
+        special ? getCharacterCodes(33, 47) : null
+    ];
+    characterCodes = [
+        ...characterCodes,
+        special ? getCharacterCodes(58, 64) : null
+    ];
+    characterCodes = [
+        ...characterCodes,
+        special ? getCharacterCodes(91, 96) : null
+    ];
+  
+    const availableCharacters = characterCodes
+        .filter((c) => Boolean(c))
+        .flat()
+        .map((c) => String.fromCharCode(c));
+  
+    const password = createPassword(passwordLength, availableCharacters);
+    return password;
 };
