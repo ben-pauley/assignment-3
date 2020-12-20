@@ -28,8 +28,8 @@ function generatePassword()
         { // if the user has entered a number between 8 and 128, correctInput is set to true and the do while loop ends
             correctInput = true;
         }
-    } 
-    while (correctInput == false);
+    }
+    while (correctInput === false);
 
 
     do
@@ -50,35 +50,57 @@ function generatePassword()
             alert("You must select at least one type of character for your password.")
         }
     }
-    while (oneSelected == false);
+    while (oneSelected === false);
 
-
-    // declare arrays containing each of the possible characters for each of the user's possible selections
-    var lowerCaseArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var UpperCaseArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    var numberArray = '0123456789'.split('');
-    var specCharArray = '!"#$%&()*+,-./:;<=>?@[]^_`{|}~'.split('');
 
     var pwArray = []; // declare empty array to store all the possible characters the user selects
 
-    if (lowerCase == true)
-    { // if the user has said yes to lower case characters
-        pwArray = pwArray.concat(lowerCaseArray); // the array of lower case characters is added to the array of possible characters to be used in the password
+    for (i = 97; i <= 122; i++)
+    {
+        if (lowerCase === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
     }
 
-    if (upperCase == true)
-    { // if the user has said yes to upper case characters
-        pwArray = pwArray.concat(UpperCaseArray); // the array of upper case characters is added to the array of possible characters to be used in the password
+    for (i = 65; i <= 90; i++)
+    {
+        if (upperCase === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
     }
 
-    if (numbers == true)
-    { // if the user has said yes to numbers
-        pwArray = pwArray.concat(numberArray); // the array of numbers is added to the array of possible characters to be used in the password
+    for (i = 48; i <= 57; i++)
+    {
+        if (numbers === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
     }
 
-    if (specChar == true)
-    { // if the user has said yes to special characters
-        pwArray = pwArray.concat(specCharArray); // the array of special characters is added to the array of possible characters to be used in the password
+    for (i = 33; i <= 47; i++)
+    {
+        if (specChar === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
+    }
+
+    for (i = 58; i <= 64; i++)
+    {
+        if (specChar === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
+    }
+
+    for (i = 91; i <= 96; i++)
+    {
+        if (specChar === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
     }
 
     var finalPwArray = []; // declare empty array to store the final password
@@ -90,4 +112,15 @@ function generatePassword()
 
     var finalPwStr = finalPwArray.join(''); // removes commas and spaces from array so that it appears as one continuous string
     return finalPwStr; //returns the final randomly generated password according to user's criteria
+};
+
+function addCharToArray(min, max, type)
+{
+    for (i = min; i <= max; i++)
+    {
+        if (type === true)
+        {
+            pwArray = pwArray.concat(String.fromCharCode(i));
+        }
+    }
 };
