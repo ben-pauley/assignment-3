@@ -11,7 +11,7 @@ Nothing is required to install my project, but the project is deployed live at t
 
 This project was completed using Visual Studio Code and I tested the website using Google Chrome. The assignment was largely completed using JavaScript functions
 
-![main function code](https://raw.github.com/ben-pauley/assignment-3/blob/master/screenshot1.png)
+![main function code](https://raw.github.com/ben-pauley/assignment-3/master/screenshot1.png)
 
 ## Conclusion
 
