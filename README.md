@@ -1,4 +1,4 @@
-# assignment-2
+# assignment-3
 
 ## My Repository
 In this GitHub repository, you will find my completed assignment for week 4 of the programme. My task was to create an application that an employee can use to generate a random password based on criteria they selected. The application runs in a browser and features dynamically updated HTML and CSS. The focus of this assignment, however, was to power the password generator with JavaScript. I believe I was successful in meeting the criteria given.
