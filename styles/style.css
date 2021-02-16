@@ -13,21 +13,21 @@ body,
 }
 
 body {
-  font-family: sans-serif;
   background-color: #f9fbfd;
+  font-family: sans-serif;
 }
 
 .wrapper {
-  padding-top: 30px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 30px;
 }
 
 header {
-  text-align: center;
+  color: hsl(206, 17%, 28%);
   padding: 20px;
   padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+  text-align: center;
 }
 
 .card {
@@ -43,11 +43,11 @@ header {
 }
 
 .card-header::after {
+  background: #e7e9eb;
   content: " ";
   display: block;
-  width: 100%;
-  background: #e7e9eb;
   height: 2px;
+  width: 100%;
 }
 
 .card-body {
@@ -59,38 +59,38 @@ header {
 }
 
 .card-footer::before {
+  background: #e7e9eb;
   content: " ";
   display: block;
-  width: 100%;
-  background: #e7e9eb;
   height: 2px;
+  width: 100%;
 }
 
 .card-footer::after {
+  clear: both;
   content: " ";
   display: block;
-  clear: both;
 }
 
 .btn {
-  border: none;
   background-color: hsl(360, 91%, 36%);
+  border: none;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
   color: hsl(0, 0%, 100%);
+  cursor: pointer;
   display: inline-block;
   font-size: 22px;
   line-height: 22px;
   margin: 16px 16px 16px 20px;
   padding: 14px 34px;
   text-align: center;
-  cursor: pointer;
 }
 
 button[disabled] {
-  cursor: default;
   background: #c0c7cf;
+  cursor: default;
 }
 
 .float-right {
@@ -102,20 +102,20 @@ button[disabled] {
   -moz-appearance: none;
   appearance: none;
   border: none;
-  display: block;
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 85px;
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
   border: 2px dashed #c0c7cf;
   border-radius: 6px;
-  resize: none;
+  display: block;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
   overflow: hidden;
+  padding-bottom: 85px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  resize: none;
+  text-align: center;
+  width: 100%;
 }
 
 @media (max-width: 690px) {
