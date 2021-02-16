@@ -14,7 +14,7 @@ This project was completed using Visual Studio Code and I tested the website usi
 
 ## Screenshot of Deployed Application
 
-![main function code](https://raw.github.com/ben-pauley/assignment-3/master/screenshot1.png)
+![main function code](/images/screenshot1.png?raw=true)
 
 ## Conclusion
 
